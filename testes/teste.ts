@@ -87,7 +87,7 @@ folders.sort((f1, f2) => f1.name < f2.name ? -1 : 1);
 
 function list_content(dir :string):mockDirent[] {
     const content = readdirSync(dir,{withFileTypes: true})
-    .filter(f => (!f.name.startsWith(".") && f.isDirectory()) || (!f.isDirectory() && music_ext.includes(lpath.extname(f.name))))
+    .filter(f => (!f.name.startsWith(".") && f.isDirectory() && !["root", "boot"].includes(f.name)) || (!f.isDirectory() && music_ext.includes(lpath.extname(f.name))))
     .sort((f1, f2) => Number(f2.isDirectory) - Number(f1.isDirectory))
     .map(f => {return new mockDirent(f.name, dir, f.isDirectory());});
     return content;
@@ -123,7 +123,13 @@ class File {
     }
 
     html() {
-        return `<li id="${this.id()}">${this.name}</li>`;
+        return `<li id="${this.id()}">
+                    <i class="material-symbols-rounded" style="vertical-align:middle;">
+                        music_note
+                    </i>
+                    <input type="checkbox">
+                    ${this.name}
+                </li>`;
     }
 }
 
@@ -134,12 +140,32 @@ class Folder extends File {
     }
 
     closed() {
-        return `<li id="${this.id()}" hx-trigger="click" hx-target="this" hx-swap="outerHTML" hx-get="/api/${this.id()}/open">c ${this.name||this.full_path}</li>`;
+        return `<li id="${this.id()}-line">
+                    <input type="checkbox">
+                    <div id="${this.id()}" hx-trigger="click" hx-target="#${this.id()}-line" hx-swap="outerHTML" hx-get="/api/${this.id()}/open" style="display:inline-block;">
+                         <i class="material-symbols-rounded" style="vertical-align:middle;">
+                            folder
+                        </i>
+                        ${this.name||this.full_path}
+                    </div>
+                </li>`;
     }
 
     opened() {
         const content = list_content(this.full_path);
         const html = createHtml(content);
-        return  `<div id="${this.id()}-parent"><li id="${this.id()}" hx-trigger="click" hx-target="#${this.id()}-parent" hx-swap="outerHTML" hx-get="/api/${this.id()}/close">${this.name||this.full_path}</li>${Boolean(html) ? `<ul>${html}</ul>` : ""}</div>`;
+        return  `<div id="${this.id()}-parent">
+                    <li id="${this.id()}-line">
+                        <input type="checkbox">
+                        <div id="${this.id()}" hx-trigger="click" hx-target="#${this.id()}-parent" hx-swap="outerHTML" hx-get="/api/${this.id()}/close" style="display:inline-block;">
+                            <i class="material-symbols-rounded" style="vertical-align:middle;">
+                                folder_open
+                            </i>
+                            ${this.name||this.full_path}
+                        </div>
+                    </li>
+                    ${Boolean(html) ? `<ul>${html}</ul>` : ""}
+                </div>`;
     }
 }
+

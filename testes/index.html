@@ -8,6 +8,12 @@
         <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
         <title>Old Is Cool</title>
         <link href="css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <style>
+        ul {
+            list-style-type: none;
+        }
+        </style>
     </head>
     <body style="height:100%;">
         <div id="folders" style="height:100%;" hx-trigger="load" hx-get="/start" hx-swap="outerHTML" hx-target="#folders"></div>
