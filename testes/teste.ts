@@ -16,6 +16,16 @@ app.listen(port, () => {
     console.log(`App is running on http://localhost:${port}...`);
 });
 
+app.post("/teste-param", (req: Request, res: Response) => {
+    console.log(req.params, req.body);
+    res.send("");
+});
+
+app.get("/css/:file", (req: Request, res: Response) => {
+    const file = req.params.file;
+    res.status(200).sendFile(lpath.join(root, "css", file));
+});
+
 app.get("/api/:folder/:state", (req: Request, res: Response) => {
     const fpath = Buffer.from(req.params.folder, 'base64url').toString();
     const name = lpath.basename(fpath);
@@ -124,7 +134,7 @@ class File {
 
     html() {
         return `<li id="${this.id()}">
-                    <i class="material-symbols-rounded" style="vertical-align:middle;">
+                    <i class="material-symbols-outlined music-note icon">
                         music_note
                     </i>
                     <input type="checkbox">
@@ -142,8 +152,8 @@ class Folder extends File {
     closed() {
         return `<li id="${this.id()}-line">
                     <input type="checkbox">
-                    <div id="${this.id()}" hx-trigger="click" hx-target="#${this.id()}-line" hx-swap="outerHTML" hx-get="/api/${this.id()}/open" style="display:inline-block;">
-                         <i class="material-symbols-rounded" style="vertical-align:middle;">
+                    <div id="${this.id()}" hx-trigger="click" hx-target="#${this.id()}-line" hx-swap="outerHTML" hx-get="/api/${this.id()}/open" class="inline">
+                         <i class="material-symbols-outlined folder icon">
                             folder
                         </i>
                         ${this.name||this.full_path}
@@ -157,8 +167,8 @@ class Folder extends File {
         return  `<div id="${this.id()}-parent">
                     <li id="${this.id()}-line">
                         <input type="checkbox">
-                        <div id="${this.id()}" hx-trigger="click" hx-target="#${this.id()}-parent" hx-swap="outerHTML" hx-get="/api/${this.id()}/close" style="display:inline-block;">
-                            <i class="material-symbols-rounded" style="vertical-align:middle;">
+                        <div id="${this.id()}" hx-trigger="click" hx-target="#${this.id()}-parent" hx-swap="outerHTML" hx-get="/api/${this.id()}/close" class="inline">
+                            <i class="material-symbols-outlined folder icon">
                                 folder_open
                             </i>
                             ${this.name||this.full_path}

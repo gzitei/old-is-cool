@@ -1,0 +1,20 @@
+body {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+}
+ul {
+    list-style-type: none;
+}
+.icon {
+    vertical-align:middle;
+    font-size:24px;
+}
+.folder {
+    color:#FFD700;
+}
+.music-note {
+    color:#0078D7;
+}
+.inline {
+    display:inline-block;
+}
