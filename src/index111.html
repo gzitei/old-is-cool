@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+        <script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
+        <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+        <title>Old Is Cool</title>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div class="container">
+                <button hx-on::before-request="alert('clicou!!!')" hx-target="#folders"  hx-get="/folders/list/input" hx-on::after-request="console.log('clicou!!!')">CLICA!!</button>
+            <div class="menu">
+            </div>
+            <div id="content">
+            </div>
+            <div id="folders" style="height:100%;" hx-get="/folders/list/input" hx-swap="outerHTML" hx-target="#folders">
+            </div>
+        </div>
+    </body>
+</html>
+

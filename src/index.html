@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,10 +9,25 @@
         <title>Old Is Cool</title>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/amazdoom" rel="stylesheet">
         <link rel="stylesheet" href="/css/style.css">
     </head>
-    <body style="height:100%;">
-        <div id="folders" style="height:100%;" hx-trigger="load" hx-get="/folders" hx-swap="outerHTML" hx-target="#folders"></div>
+    <body>
+        <div class="layout-container">
+            <div class="top-bar">
+                <img src="/img/icon.png" height="60px" style="filter: brightness(150%);">
+                Old Is Cool
+            </div>
+            <div class="sidebar">
+                <h1>Configurações</h1>
+                <div class="icon-text-container"><h2>Entrada<h2><i hx-get="/folders/list/input" hx-target="#main" hx-trigger="click" hx-swap="innerHTML" class="material-symbols-outlined icon pointer">edit</i></div>
+                <div hx-get="/configs/input" hx-swap="outerHTML" hx-trigger="load"></div>
+                <div class="icon-text-container"><h2>Saída<h2><i hx-get="/folders/list/output" hx-target="#main" hx-trigger="click" hx-swap="innerHTML" class="material-symbols-outlined icon pointer">edit</i></div>
+                <div hx-get="/configs/output" hx-swap="outerHTML" hx-trigger="load"></div>
+            </div>
+            <div id="main" class="main-container">
+                <div id="folders" style="height:100%;display:none;">
+            </div>
     </body>
 </html>
 
