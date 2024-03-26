@@ -1,9 +1,61 @@
 body {
     font-family: "Ubuntu", sans-serif;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: normal;
+    max-height: 100vh;
+    min-height: 100vh;
+    overflow-y: hidden;
 }
-ul {
+
+.top-bar {
+    background-color: black; /* Fundo preto */
+    height: 60px; /* Altura da barra */
+    display: flex; /* Flexbox para alinhamento */
+    align-items: center; /* Centralizar verticalmente */
+    justify-content: center; /* Centralizar horizontalmente */
+    position: fixed; /* Fixar na parte superior da página */
+    top: 0;
+    left: 0;
+    right: 0; /* Esticar para ocupar toda a largura */
+    padding: 5px;
+}
+
+.container {
+    margin-top: 60px;
+    display: "flex inline";
+    min-height=100%;
+    max-height="100%";
+    over
+}
+
+h1 {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 24px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+h2 {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+
+p {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    margin-top:0px;
+    margin-bottom: 4px;
+}
+
+ul, li {
     list-style-type: none;
+    margin-top:0px;
+    margin-bottom: 0px;
 }
 .icon {
     vertical-align:middle;
@@ -19,4 +71,111 @@ ul {
     display:inline-block;
 }
 
+.pointer {
+    cursor: pointer;
+}
 
+#folders {
+    font-size: 16px;
+    font-weight: normal;
+    color: #333;
+    padding:10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    height: 75vh;
+}
+
+/* Estilo para o contêiner de layout */
+.layout-container {
+    display: grid;
+    grid-template-columns: 340px 1fr; /* Define duas colunas: uma para a barra lateral e outra para o conteúdo principal */
+    grid-template-rows: 60px 1fr; /* Define duas linhas: uma para a barra superior e outra para o conteúdo */
+    height: 100vh; /* Altura total da janela de visualização */
+}
+
+/* Estilo para a barra superior */
+.top-bar {
+    display: flex; /* Flexbox para alinhamento */
+    align-items: center; /* Centralizar verticalmente */
+    justify-content: center; /* Centralizar horizontalmente */
+    font-family: 'AmazDooMLeft2', sans-serif;
+    background-color: #333; /* Cor de fundo cinza */
+    grid-column: 1 / span 2; /* Faz com que a barra superior ocupe ambas as colunas */
+    color: black; /* Cor do texto */
+    font-size: 48px;
+    color: black;
+    -webkit-text-stroke: 1px white;
+    gap: 10px;
+}
+
+/* Estilo para a barra lateral cinza */
+.sidebar {
+    overflow: hidden; /* Esconde qualquer conteúdo que ultrapasse os limites do botão */
+    background-color: #ccc; /* Cor de fundo cinza claro */
+    grid-row: 2; /* Faz com que a barra lateral comece na segunda linha */
+    padding: 0px 10px 0px 10px;
+}
+
+/* Estilo para o contêiner principal */
+.main-container {
+    display:flex-grow;
+    align-items:center;
+    overflow: auto;
+    grid-row: 2; /* Faz com que o contêiner principal comece na segunda linha */
+    grid-column: 2; /* Faz com que o contêiner principal comece na segunda coluna */
+    padding: 20px; /* Padding interno */
+}
+
+.icon-text-container {
+ display: flex inline;
+ justify-content: space-between; /* Distribute space between the items */
+ align-items: center; /* Align items vertically in the center */
+ width: 100%; /* Ensure the container takes up the full width */
+}
+
+.config-box {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    style="width:100%;
+    overflow-x:auto;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox */
+}
+
+.config-box::-webkit-scrollbar {
+    display: none;
+}
+
+.bottom-border {
+ border-bottom: .5px solid black;
+}
+
+button {
+    margin-bottom: 8px;
+    border-style: double;
+    font-size: 16px;
+    padding: 8px 12px 8px 12px;
+    cursor: pointer;
+}
+
+.red-button {
+    background-color: #831843;
+    border: 1px solid #9f1239;
+    color: #fbcfe8;
+}
+
+.red-button:hover {
+    background-color: #be185d;
+}
+
+.clear-button {
+    background-color: #fbcfe8;
+    border: 1px solid #831843;
+    color: #831843;
+}
+
+.clear-button:hover {
+    background-color: #f9a8d4;
+}
